@@ -16,3 +16,8 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+mac = mac.split(":")
+oct1bin = int(mac[0],16)
+oct2bin = int(mac[1],16)
+oct3bin = int(mac[2],16)
+print("{:b}{:b}{:b}".format(oct1bin,oct2bin,oct3bin))
