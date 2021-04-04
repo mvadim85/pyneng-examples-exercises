@@ -25,3 +25,23 @@ trunk_template = [
     "switchport mode trunk",
     "switchport trunk allowed vlan {}",
 ]
+
+# Из 2-х списков делаем словарь
+command_mode = dict()
+command_mode['access'] = access_template
+command_mode['trunk'] = trunk_template
+
+# создаем словарь с возможными вопросами
+available_questions = {"trunk" : "Введите разрешенные VLANы:", "access" : "Введите номер VLAN:" }
+
+
+# получаем данные от пользователя
+input_mode =(input("Введите режим работы интерфейса (access/trunk):"))
+interface = input("Введите тип и номер интерфейса:")
+vlan = input(available_questions[input_mode])
+
+# зменяем {} на номер влана
+command_mode = "\n".join(command_mode[input_mode]).replace("{}", vlan)
+
+print("interface " + interface)
+print(command_mode)

@@ -41,3 +41,33 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+inp = input("Веведите IP сети, или хоста, и маску: ")
+parse_input = inp.split("/")
+ip = parse_input[0].split(".")
+ip_bin = '{:08b}'.format(int(ip[0])) + '{:08b}'.format(int(ip[1])) + '{:08b}'.format(int(ip[2])) + '{:08b}'.format(int(ip[3]))
+
+mask = int(parse_input[1])
+ip  = ip_bin[0:mask] + "0"*(32-mask)
+mask_bin = ("1" * mask + "0" * (32 - mask))
+maskb_okt1, maskb_okt2, maskb_okt3, maskb_okt4 = mask_bin[0:8], mask_bin[8:16], mask_bin[16:24], mask_bin[24:32]
+
+template_network = '''
+Network:
+{0:<10}{1:<10}{2:<10}{3:<10}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}
+
+Mask:
+/{4}
+{5:<10}{6:<10}{7:<10}{8:<10}
+{5:08b}  {6:08b}  {7:08b}  {8:08b}
+'''
+print(template_network.format(int(ip[0:8], 2),int(ip[8:16], 2),int(ip[16:24], 2),int(ip[24:32], 2), mask, 
+      int(maskb_okt1, 2), int(maskb_okt2, 2), int(maskb_okt3, 2), int(maskb_okt4,2)))
+      
+      
+      
+      
+      
+      
+      

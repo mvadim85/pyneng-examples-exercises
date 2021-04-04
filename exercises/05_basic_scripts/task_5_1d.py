@@ -43,3 +43,10 @@ london_co = {
         "routing": True,
     },
 }
+
+router = input("Введите имя устройства:")
+available_pararmetr = str(list(london_co[router].keys()))
+available_pararmetr = available_pararmetr.replace("[","").replace("]","").replace("'","")
+param = input("Введите имя параметра (" + available_pararmetr + "): ")
+param = param.lower()
+print(london_co[router].get(param,"Такого параметра нет"))
